@@ -27,12 +27,12 @@ jobs:
             app/libs/libcore.aar
           key: ${{ hashFiles('.github/workflows/*', 'golang_status', 'libcore_status') }}
       - name: Install Golang
-        if: steps.cache.outputs.cache-hit != 'true'
+        #if: steps.cache.outputs.cache-hit != 'true'
         uses: actions/setup-go@v3
         with:
           go-version: ^1.21
       - name: Native Build
-        if: steps.cache.outputs.cache-hit != 'true'
+        #if: steps.cache.outputs.cache-hit != 'true'
         run: ./run lib core
   build:
     name: Build OSS APK
