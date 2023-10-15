@@ -13,15 +13,15 @@ git config --global user.name "Your Name"
 git remote add MatsuriDayo https://github.com/MatsuriDayo/sing-box
 git fetch MatsuriDayo 1.6.b1
 git clean -f nekoutils/callback.go
-git cherry-pick -x -n 00803b5
-git cherry-pick -x -n e962e65
-git cherry-pick -x -n 074cade
+#git cherry-pick -x -n 00803b5
+#git cherry-pick -x -n e962e65
+#git cherry-pick -x -n 074cade
 git cherry-pick -x -n a6f6c23
 git cherry-pick -x -n 6dc5b05
-git cherry-pick -x -n 209eae6
-git cherry-pick -x -n 7e553db
-git cherry-pick -x -n a64e8ec
-git cherry-pick -x -n 1927ca5
+#git cherry-pick -x -n 209eae6
+#git cherry-pick -x -n 7e553db
+#git cherry-pick -x -n a64e8ec
+#git cherry-pick -x -n 1927ca5
 cd ..
 #sed 's/err = router.Initialize(inbounds, outbounds, func() adapter.Outbound {/err = router.Initialize(inbounds, []adapter.OutboundProvider{func() adapter.Outbound {/' -i sing-box-extra/boxbox/box.go
 #sed 's/})/}}, outbounds, func() adapter.Outbound { return nil })/' -i sing-box-extra/boxbox/box.go
