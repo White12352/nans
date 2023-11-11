@@ -12,7 +12,7 @@ pushd ..
 
 
 if [ ! -d "$DASH_REPO" ]; then
-  git clone https://github.com/MetaCubeX/${DASH_REPO}.git || exit 1
+  git clone -b main https://github.com/MetaCubeX/${DASH_REPO}.git || exit 1
 fi
 
 pushd ${DASH_REPO}/
