@@ -8,18 +8,21 @@ rm -rf sing-box
 git clone -b dev-next https://github.com/SagerNet/sing-box.git sing-box
 git clone -b dev https://github.com/White12352/sing sing
 svn co https://github.com/MatsuriDayo/sing-box/branches/1.7.a10/nekoutils sing-box/nekoutils
+svn co https://github.com/MatsuriDayo/sing-box/branches/1.7.a10/outbound t/outbound
+rm -f sing-box/outbound/selector.go
+cp -f t/outbound/selector.go sing-box/outbound/selector.go
 cd sing-box
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
-git remote add MatsuriDayo https://github.com/MatsuriDayo/sing-box
-git fetch MatsuriDayo 1.7.a10
-git clean -f nekoutils/callback.go
+#git remote add MatsuriDayo https://github.com/MatsuriDayo/sing-box
+#git fetch MatsuriDayo 1.7.a10
+#git clean -f nekoutils/callback.go
 #git cherry-pick -x -n 00803b5
 #git cherry-pick -x -n e962e65
 #git cherry-pick -x -n 074cade
 ##git cherry-pick -x -n a6f6c23
 ##git cherry-pick -x -n 6dc5b05
-git cherry-pick -x -n e40ce5e
+#git cherry-pick -x -n e40ce5e
 #git cherry-pick -x -n 209eae6
 #git cherry-pick -x -n 7e553db
 #git cherry-pick -x -n a64e8ec
