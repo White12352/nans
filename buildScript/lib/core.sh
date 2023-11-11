@@ -6,7 +6,7 @@ rm -rf sing-box
 #git clone -b building https://github.com/PuerNya/sing-box.git sing-box
 #git clone -b dev-next-yaott https://github.com/CHIZI-0618/sing-box.git sing-box
 git clone -b dev-next https://github.com/SagerNet/sing-box.git sing-box
-git clone -b dev https://github.com/White12352/sing sing
+#git clone -b dev https://github.com/White12352/sing sing
 svn co https://github.com/MatsuriDayo/sing-box/branches/1.6.a2/nekoutils sing-box/nekoutils
 cd sing-box
 git config --global user.email "you@example.com"
@@ -45,6 +45,7 @@ awk '/ProtocolSTUN = "stun"/ {print; print "\tProtocolBittorrent = \"bittorrent\
 awk '{ if (/sniffMetadata, err := sniff.PeekStream\(ctx, conn, buffer, time\.Duration\(metadata\.InboundOptions\.SniffTimeout\), sniff\.StreamDomainNameQuery, sniff\.TLSClientHello, sniff\.HTTPHost\)/) sub("sniff\\.HTTPHost", "sniff.HTTPHost, sniff.BittorrentTCPMessage") } { print }' sing-box/route/router.go > temp && mv -f temp sing-box/route/router.go 
 sed -i 's/sniffMetadata, _ := sniff.PeekPacket(ctx, buffer.Bytes(), sniff.DomainNameQuery, sniff.QUICClientHello, sniff.STUNMessage)/sniffMetadata, _ := sniff.PeekPacket(ctx, buffer.Bytes(), sniff.DomainNameQuery, sniff.QUICClientHello, sniff.STUNMessage, sniff.BittorrentUDPMessage)/' sing-box/route/router.go
 awk '{if(index($0, "//replace github.com/sagernet/sing") > 0) $0 = "replace github.com/sagernet/sing v0.2.18-0.20231108041402-4fbbd193203c => github.com/White12352/sing v0.2.19"}1' sing-box/go.mod > temp_file && mv -f temp_file sing-box/go.mod
+awk '/^replace/ && !found {print "replace github.com/sagernet/sing v0.2.18-0.20231108041402-4fbbd193203c => github.com/White12352/sing v0.2.19"; found=1} 1' sing-box/test/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box/test/go.mod
 git clone -b dev https://github.com/SagerNet/sing-quic sing-quic
 cd sing-box/test
 go mod tidy
