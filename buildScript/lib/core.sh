@@ -12,7 +12,7 @@ cd sing-box
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 git remote add MatsuriDayo https://github.com/MatsuriDayo/sing-box
-git fetch MatsuriDayo 1.6.b1
+git fetch MatsuriDayo 1.7.a10
 git clean -f nekoutils/callback.go
 #git cherry-pick -x -n 00803b5
 #git cherry-pick -x -n e962e65
