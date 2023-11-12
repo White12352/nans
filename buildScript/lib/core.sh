@@ -49,16 +49,16 @@ awk '{ if (/sniffMetadata, err := sniff.PeekStream\(ctx, conn, buffer, time\.Dur
 sed -i 's/sniffMetadata, _ := sniff.PeekPacket(ctx, buffer.Bytes(), sniff.DomainNameQuery, sniff.QUICClientHello, sniff.STUNMessage)/sniffMetadata, _ := sniff.PeekPacket(ctx, buffer.Bytes(), sniff.DomainNameQuery, sniff.QUICClientHello, sniff.STUNMessage, sniff.BittorrentUDPMessage)/' sing-box/route/router.go
 awk '{if(index($0, "//replace github.com/sagernet/sing") > 0) $0 = "replace github.com/sagernet/sing v0.2.18-0.20231108041402-4fbbd193203c => github.com/White12352/sing v0.2.19"}1' sing-box/go.mod > temp_file && mv -f temp_file sing-box/go.mod
 awk '/^replace/ && !found {print "replace github.com/sagernet/sing v0.2.18-0.20231108041402-4fbbd193203c => github.com/White12352/sing v0.2.19"; found=1} 1' sing-box/test/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box/test/go.mod
-awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../../../sing"; found=1} 1' nans/libcore/.build/src/go.mod > go.mod.tmp && mv -f go.mod.tmp nans/libcore/.build/src/go.mod
+#awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../../../sing"; found=1} 1' nans/libcore/.build/src/go.mod > go.mod.tmp && mv -f go.mod.tmp nans/libcore/.build/src/go.mod
 awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../sing"; found=1} 1' nans/libcore/go.mod > go.mod.tmp && mv -f go.mod.tmp nans/libcore/go.mod
 git clone -b dev https://github.com/SagerNet/sing-quic sing-quic
 cd sing-box/test
 go mod tidy
 cd ..
 go mod tidy
-cd ../nans/libcore/.build/src
-go mod tidy
-cd ../..
+#cd ../nans/libcore/.build/src
+#go mod tidy
+cd ../nans/libcore
 go mod tidy
 cd ..
 buildScript/lib/core/build.sh
