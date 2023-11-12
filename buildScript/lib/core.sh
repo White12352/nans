@@ -6,9 +6,12 @@ rm -rf sing-box
 #git clone -b building https://github.com/PuerNya/sing-box.git sing-box
 #git clone -b dev-next-yaott https://github.com/CHIZI-0618/sing-box.git sing-box
 git clone -b dev-next https://github.com/SagerNet/sing-box.git sing-box
-#git clone -b dev https://github.com/White12352/sing sing
+git clone -b dev https://github.com/White12352/sing sing
 svn co https://github.com/MatsuriDayo/sing-box/branches/1.6.a2/nekoutils sing-box/nekoutils
-cd sing-box
+awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../sing"; found=1} 1' sing-box-extra/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box-extra/go.mod
+cd sing-box-extra
+go mod tidy
+cd ../sing-box
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 git remote add MatsuriDayo https://github.com/MatsuriDayo/sing-box
@@ -46,8 +49,11 @@ awk '{ if (/sniffMetadata, err := sniff.PeekStream\(ctx, conn, buffer, time\.Dur
 sed -i 's/sniffMetadata, _ := sniff.PeekPacket(ctx, buffer.Bytes(), sniff.DomainNameQuery, sniff.QUICClientHello, sniff.STUNMessage)/sniffMetadata, _ := sniff.PeekPacket(ctx, buffer.Bytes(), sniff.DomainNameQuery, sniff.QUICClientHello, sniff.STUNMessage, sniff.BittorrentUDPMessage)/' sing-box/route/router.go
 awk '{if(index($0, "//replace github.com/sagernet/sing") > 0) $0 = "replace github.com/sagernet/sing v0.2.18-0.20231108041402-4fbbd193203c => github.com/White12352/sing v0.2.19"}1' sing-box/go.mod > temp_file && mv -f temp_file sing-box/go.mod
 awk '/^replace/ && !found {print "replace github.com/sagernet/sing v0.2.18-0.20231108041402-4fbbd193203c => github.com/White12352/sing v0.2.19"; found=1} 1' sing-box/test/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box/test/go.mod
+awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../sing"; found=1} 1' sing-box/libcore/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box/libcore/go.mod
 git clone -b dev https://github.com/SagerNet/sing-quic sing-quic
 cd sing-box/test
+go mod tidy
+cd ../libcore
 go mod tidy
 cd ..
 go mod tidy
