@@ -67,7 +67,7 @@ sed -i 's/sniffMetadata, _ := sniff.PeekPacket(ctx, buffer.Bytes(), sniff.Domain
 awk '{if(index($0, "//replace github.com/sagernet/sing") > 0) $0 = "replace github.com/sagernet/sing => ../sing"}1' sing-box/go.mod > temp_file && mv -f temp_file sing-box/go.mod
 awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../sing"; found=1} 1' sing-box/test/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box/test/go.mod
 #awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../../../sing"; found=1} 1' nans/libcore/.build/src/go.mod > go.mod.tmp && mv -f go.mod.tmp nans/libcore/.build/src/go.mod
-awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../sing"; found=1} 1' nans/libcore/go.mod > go.mod.tmp && mv -f go.mod.tmp nans/libcore/go.mod
+#awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../sing"; found=1} 1' nans/libcore/go.mod > go.mod.tmp && mv -f go.mod.tmp nans/libcore/go.mod
 git clone -b dev https://github.com/MatsuriDayo/sing-quic sing-quic
 cd sing-box/test
 go mod tidy
