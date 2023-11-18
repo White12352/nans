@@ -5,8 +5,8 @@ cd ..
 rm -rf sing-box
 #git clone -b building https://github.com/PuerNya/sing-box.git sing-box
 #git clone -b dev-next-yaott https://github.com/CHIZI-0618/sing-box.git sing-box
-git clone -b dev-next https://github.com/SagerNet/sing-box.git sing-box
-git clone -b dev https://github.com/SagerNet/sing sing
+git clone -b 1.6.4 https://github.com/MatsuriDayo/sing-box.git sing-box
+git clone -b main https://github.com/SagerNet/sing sing
 cd sing
 awk '{if ($0 ~ /"encoding\/base64"/) {print "\t\"encoding/base64\""; print "\t\"fmt\""} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 awk '!/net\/url/' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
@@ -24,21 +24,21 @@ awk '{if ($0 ~ /reader := std_bufio.NewReader\(conn\)/) {print ""; print "\tread
 awk '{if ($0 ~ /response, err := http.ReadResponse\(reader, request\)/) {print ""; print "\tresponse, err := http.ReadResponse(reader, nil)"; print ""} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 awk '{if ($0 ~ /if response.StatusCode == http.StatusOK {/) {print ""; print "\tif response.StatusCode == http.StatusOK {"} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 cd ..
-svn co https://github.com/MatsuriDayo/sing-box/branches/1.6.a2/nekoutils sing-box/nekoutils
+#svn co https://github.com/MatsuriDayo/sing-box/branches/1.6.a2/nekoutils sing-box/nekoutils
 #awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../sing"; found=1} 1' sing-box-extra/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box-extra/go.mod
 cd sing-box-extra
 go mod tidy
 cd ../sing-box
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
-git remote add MatsuriDayo https://github.com/MatsuriDayo/sing-box
-git fetch MatsuriDayo 1.6.b1
-git clean -f nekoutils/callback.go
+###git remote add MatsuriDayo https://github.com/MatsuriDayo/sing-box
+###git fetch MatsuriDayo 1.6.b1
+###git clean -f nekoutils/callback.go
 #git cherry-pick -x -n 00803b5
 #git cherry-pick -x -n e962e65
 #git cherry-pick -x -n 074cade
-git cherry-pick -x -n a6f6c23
-git cherry-pick -x -n 6dc5b05
+###git cherry-pick -x -n a6f6c23
+###git cherry-pick -x -n 6dc5b05
 #git cherry-pick -x -n 209eae6
 #git cherry-pick -x -n 7e553db
 #git cherry-pick -x -n a64e8ec
@@ -68,7 +68,7 @@ awk '{if(index($0, "//replace github.com/sagernet/sing") > 0) $0 = "replace gith
 awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../sing"; found=1} 1' sing-box/test/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box/test/go.mod
 #awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../../../sing"; found=1} 1' nans/libcore/.build/src/go.mod > go.mod.tmp && mv -f go.mod.tmp nans/libcore/.build/src/go.mod
 awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../../sing"; found=1} 1' nans/libcore/go.mod > go.mod.tmp && mv -f go.mod.tmp nans/libcore/go.mod
-git clone -b dev https://github.com/SagerNet/sing-quic sing-quic
+git clone -b dev https://github.com/MatsuriDayo/sing-quic sing-quic
 cd sing-box/test
 go mod tidy
 cd ..
