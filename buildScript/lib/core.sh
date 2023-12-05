@@ -12,6 +12,7 @@ rm -rf nans/libcore
 svn co https://github.com/MatsuriDayo/NekoBoxForAndroid/branches/main/libcore nans/libcore
 git clone -b main https://github.com/MatsuriDayo/NekoBoxForAndroid.git t
 cp -rf t/libcore nans/libcore
+rm -rf t
 cd sing
 awk '{if ($0 ~ /"encoding\/base64"/) {print "\t\"encoding/base64\""; print "\t\"fmt\""} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 awk '!/net\/url/' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
