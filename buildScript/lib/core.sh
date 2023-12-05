@@ -8,6 +8,8 @@ rm -rf sing-box
 git clone -b def https://github.com/xchacha20-poly1305/sing-box.git sing-box
 git clone -b dev https://github.com/SagerNet/sing sing
 git clone -b main https://github.com/matsuridayo/libneko libneko
+rm -rf nans/libcore
+svn co https://github.com/MatsuriDayo/NekoBoxForAndroid/branches/main/libcore nans/libcore
 cd sing
 awk '{if ($0 ~ /"encoding\/base64"/) {print "\t\"encoding/base64\""; print "\t\"fmt\""} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 awk '!/net\/url/' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
