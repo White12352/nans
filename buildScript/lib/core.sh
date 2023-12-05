@@ -9,7 +9,7 @@ git clone -b def https://github.com/xchacha20-poly1305/sing-box.git sing-box
 git clone -b dev https://github.com/SagerNet/sing sing
 git clone -b main https://github.com/matsuridayo/libneko libneko
 rm -rf nans/libcore
-svn co https://github.com/MatsuriDayo/NekoBoxForAndroid/branches/main/libcore nans/libcore
+#svn co https://github.com/MatsuriDayo/NekoBoxForAndroid/branches/main/libcore nans/libcore
 git clone -b main https://github.com/MatsuriDayo/NekoBoxForAndroid.git t
 cp -rf t/libcore nans/libcore
 rm -rf t
