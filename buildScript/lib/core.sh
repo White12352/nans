@@ -30,6 +30,7 @@ awk '{if ($0 ~ /reader := std_bufio.NewReader\(conn\)/) {print ""; print "\tread
 awk '{if ($0 ~ /response, err := http.ReadResponse\(reader, request\)/) {print ""; print "\tresponse, err := http.ReadResponse(reader, nil)"; print ""} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 awk '{if ($0 ~ /if response.StatusCode == http.StatusOK {/) {print ""; print "\tif response.StatusCode == http.StatusOK {"} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 sed -i '/if key == "Host" {/,/}/d' protocol/http/client.go
+sed -i '/request\.URL = &url\.URL{Opaque: destination\.String()}/,/{/{N;N;d;}' protocol/http/client.go
 cd ..
 #svn co https://github.com/MatsuriDayo/sing-box/branches/1.6.a2/nekoutils sing-box/nekoutils
 #awk '/^replace/ && !found {print "replace github.com/sagernet/sing => ../sing"; found=1} 1' sing-box-extra/go.mod > go.mod.tmp && mv -f go.mod.tmp sing-box-extra/go.mod
