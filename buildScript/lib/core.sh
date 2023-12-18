@@ -14,6 +14,7 @@ git clone -b main https://github.com/MatsuriDayo/NekoBoxForAndroid.git t
 cp -rf t/libcore nans/libcore
 rm -rf t
 cd sing
+rm -f common/bufio/addr_conn.go
 awk '{if ($0 ~ /"encoding\/base64"/) {print "\t\"encoding/base64\""; print "\t\"fmt\""} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 awk '!/net\/url/' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
 awk '{if ($0 ~ /"os"/) {print "\t\"os\"\n\t\"strings\""} else {print $0}}' protocol/http/client.go > temp_file && mv -f temp_file protocol/http/client.go
